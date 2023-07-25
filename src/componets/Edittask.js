@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import { update } from '../Redux/TodoSlice';
+import './Edittask.css'
 
 
 
@@ -25,10 +26,10 @@ function Edittask() {
         navigate("/")
     }
   return (
-    <div>
+    <div className="container">
         <label>Edit Task </label>
         <input type='text' defaultValue={edittask[0].name} ref={editRef}/>
-        <button onClick={()=>handleEdit(edittask[0].id)}>Okk</button>
+        <button onClick={()=>handleEdit(edittask[0].id)}>Save</button>
     </div>
   )
 }
