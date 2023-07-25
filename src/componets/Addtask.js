@@ -3,9 +3,11 @@ import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { add, remove } from '../Redux/TodoSlice';
 import './Addtask.css';
+import { useNavigate } from 'react-router-dom';
 
 function Addtask() {
   const taskRef = useRef(null);
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const lists = useSelector((state) => state.todo.data);
   const handleSubmit = () => {
@@ -14,6 +16,7 @@ function Addtask() {
     taskRef.current.value = '' // Clear the input value
   };
   const del = (id) => {
+    console.log(id);
     dispatch(remove(id));
   };
 
@@ -28,7 +31,7 @@ function Addtask() {
         {lists.map((e) => (
           <div className="task-item" key={e.id}>
             <h3>{e.name}</h3>
-            <button className="edit-btn">Edit</button>
+            <button className="edit-btn" onClick={()=>navigate( `/edittask/${e.id}`)}>Edit</button>
             <button onClick={() => del(e.id)}>Delete</button>
           </div>
         ))}

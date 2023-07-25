@@ -14,18 +14,21 @@ const TodoSlice = createSlice({
             state.data =[...state.data,{id:Date.now(),name:action.payload.name}]
         },
         remove:(state,action)=>{
-            const id = action.payload.id;
+            const id = action.payload
             state.data = state.data.filter((e)=>e.id!==id)
+        },
+        update:(state,action)=>{
+            const {id,name} =action.payload
+            state.data = state.data.map((item)=> {
+                if (item.id == id){
+                    return ({...item,name})
+                }
+                return item
+            })
         }
-        // update:(state,action)=>{
-        //     const {id,name} =action.payload
-        //     state.data = state.data.map((e)=> {
-
-        //     })
-        // }
 
     }
 })
-export const {add,remove} = TodoSlice.actions
+export const {add,remove,update} = TodoSlice.actions
 
 export default TodoSlice.reducer

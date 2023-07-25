@@ -1,12 +1,20 @@
-import Addtask from "./componets/Addtask";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Addtask from "./componets/Addtask"
+import Edittask from "./componets/Edittask";
+
 
 
 
 function App() {
   return (
     <div>
-      <Addtask/>
-     
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Addtask/>}/>
+        <Route path="/edittask/:id" element={<Edittask/>}/>
+      </Routes>
+      
+      </BrowserRouter>
     </div>
   );
 }
